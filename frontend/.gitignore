@@ -27,4 +27,4 @@ dist-ssr
 build
 
 # AWS Config
-src/aws-exports.cjs
+src/aws-exports.*

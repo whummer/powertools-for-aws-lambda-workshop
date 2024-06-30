@@ -20,6 +20,51 @@ Workshop llink: https://catalog.workshops.aws/powertools-for-aws-lambda/en-US
 
 See [CONTRIBUTING](CONTRIBUTING.md#setup) for more information.
 
+### Running the Sample on LocalStack
+
+**TODO**: Note that the app is not yet fully functional on LocalStack and depends on a few PRs to be merged first, including a PR in the https://github.com/aws-amplify/amplify-js repo.
+
+First, we bootstrap and deploy the infra CDK stack:
+```
+$ npm run bootstrap
+$ npm run infra:deploy
+```
+
+We then need to generate a configuration file with exported params.
+Create a file `frontend/src/aws-exports.tsx` with the following content, and make sure to remove all `...` with corresponding values of your local infra deployment:
+```
+import { GraphQLAuthMode } from '@aws-amplify/core/internals/utils';
+
+const awsmobile = {
+  Auth: {
+    Cognito: {
+      userPoolId: "...",
+      userPoolClientId: "...",
+      identityPoolId: "...",
+      userPoolEndpoint: "http://localhost.localstack.cloud:4566",
+      identityPoolEndpoint: "http://localhost.localstack.cloud:4566",
+    },
+  },
+  API: {
+    GraphQL: {
+      endpoint: "https://localhost.localstack.cloud:4566/graphql/...",
+      region: 'us-east-1',
+      defaultAuthMode: 'userPool' as GraphQLAuthMode
+    }
+  }
+}
+export default awsmobile;
+```
+
+Next, we build and deploy the frontend application:
+```
+$ export AWS_PROFILE=localstack
+$ npm run frontend:build
+$ npm run frontend:deploy
+```
+
+Finally, we can open the app under http://website-000000000000-dev.s3.localhost.localstack.cloud:4566/index.html and start interacting with it.
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.

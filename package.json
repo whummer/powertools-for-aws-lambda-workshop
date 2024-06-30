@@ -18,6 +18,7 @@
     "frontend:deploy": "npm run deploy -w frontend",
     "frontend:invalidateCache": "npm run deploy:invalidateCache -w frontend",
     "infra:destroy": "npm run cdk:destroy -w infra -- powertoolsworkshopinfra",
+    "bootstrap": "npm run cdk:bootstrap -w infra",
     "infra:deploy": "npm run cdk:deploy -w infra -- powertoolsworkshopinfra",
     "infra:deployHot": "npm run cdk:deploy:hotswap -w infra -- powertoolsworkshopinfra",
     "infra:synth": "npm run cdk:synth-dev -w infra -- powertoolsworkshopinfra",

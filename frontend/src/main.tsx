@@ -1,3 +1,5 @@
+import { Amplify } from 'aws-amplify';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -6,13 +8,12 @@ import 'normalize.css';
 import '@aws-amplify/ui-react/styles.css';
 import './index.css';
 import { ThemeProvider, Authenticator } from '@aws-amplify/ui-react';
-import { Amplify } from 'aws-amplify';
-import awsmobile from './aws-exports.cjs';
 
 import Upload from './components/Upload';
 import Settings from './components/Settings';
 import { ErrorPage } from './components/App/ErrorPage';
 
+import awsmobile from './aws-exports';
 Amplify.configure(awsmobile);
 
 const theme = {

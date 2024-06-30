@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: { alias: { './runtimeConfig': './runtimeConfig.browser' } },
   build: {
     outDir: 'build',
+    minify: false
   },
   server: {
     host: true,
